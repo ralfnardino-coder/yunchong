@@ -1,0 +1,103 @@
+@import url('https://fonts.googleapis.com/css2?family=ZCOOL+KuaiLe&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: 'ui-rounded', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+  --font-display: 'ZCOOL KuaiLe', cursive;
+
+  /* Responsive breakpoints */
+  --breakpoint-xs: 480px;
+  --breakpoint-sm: 640px;
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 1024px;
+  --breakpoint-xl: 1280px;
+  --breakpoint-2xl: 1536px;
+  
+  --color-mint: #CBDB8A;
+  --color-mint-dark: #8DA96B;
+  --color-mint-light: #F5F9E8;
+  --color-mint-border: #E2EBBD;
+
+  --color-rosy: #F16589;
+  --color-rosy-dark: #D4377F;
+  --color-rosy-light: #FCEDF5;
+  --color-rosy-border: #FFD6E8;
+
+  @keyframes gradient-xy {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+  }
+}
+
+@utility animate-gradient-xy {
+  background-size: 200% 200%;
+  animation: gradient-xy 3s ease infinite;
+}
+
+@layer base {
+  body {
+    @apply antialiased selection:bg-pink-100 selection:text-pink-600;
+    background: linear-gradient(135deg, #FFD1DC 0%, #B9E9FF 50%, #C1FFD7 100%);
+    min-height: 100vh;
+  }
+}
+
+@utility glass {
+  background: rgba(255, 255, 255, 0.45);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  border: 2px solid rgba(255, 255, 255, 0.6);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.1);
+}
+
+@layer components {
+  .glass-card {
+    @apply glass;
+  }
+
+  .textShadow-sm {
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+  }
+
+  .custom-scrollbar::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-track {
+    @apply bg-transparent;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    @apply bg-white/50 rounded-full hover:bg-white/80 transition-colors;
+  }
+
+  .cloud-pet {
+    filter: drop-shadow(0 10px 15px rgba(0,0,0,0.05));
+    animation: float 6s ease-in-out infinite;
+  }
+
+  .star {
+    @apply absolute bg-[#FFF5BA] rounded-full;
+  }
+
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .text-nav-clamp {
+    font-size: clamp(11px, 1.2vw + 2px, 16px);
+  }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-20px) rotate(2deg); }
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
